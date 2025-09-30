@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GoShada - Modern E-commerce</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        .animated-text-container {
+            height: 1.5em;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        .animated-text {
+            animation: slide-up 12s infinite;
+        }
+        @keyframes slide-up {
+            0%,
+            25% {
+                transform: translateY(0);
+            }
+            33.33%,
+            58.33% {
+                transform: translateY(-1.5em);
+            }
+            66.66%,
+            91.66% {
+                transform: translateY(-3em);
+            }
+            100% {
+                transform: translateY(-4.5em);
+            }
+        }
+        .bento-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .bento-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dark .glassmorphism {
+            background: rgba(16, 26, 34, 0.1);
+            border: 1px solid rgba(231, 238, 244, 0.2);
+        }
+        .animate-bento-pulse {
+            animation: bento-pulse 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        @keyframes bento-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.02);
+                opacity: 0.95;
+            }
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d8bf2",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#101a22",
+                        "content-light": "#0d151c",
+                        "content-dark": "#e7eef4",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-20 items-center justify-between">
+<a class="flex items-center gap-2 text-2xl font-bold" href="#">
+<span class="text-content-light dark:text-content-dark">Go</span>
+<span class="text-primary">Shada</span>
+</a>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-medium text-content-light dark:text-content-dark hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-content-light dark:text-content-dark hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-sm font-medium text-content-light dark:text-content-dark hover:text-primary transition-colors" href="#">Brands</a>
+<a class="text-sm font-medium text-content-light dark:text-content-dark hover:text-primary transition-colors" href="#">New Arrivals</a>
+<a class="text-sm font-medium text-content-light dark:text-content-dark hover:text-primary transition-colors" href="#">Sale</a>
+</nav>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-content-light dark:text-content-dark hover:bg-primary/20 transition-colors">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-content-light dark:text-content-dark hover:bg-primary/20 transition-colors">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path></svg>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-content-light dark:text-content-dark hover:bg-primary/20 transition-colors">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16h18L59.56,172.29a24,24,0,0,0,5.33,11.27,28,28,0,1,0,44.4,8.44h45.42A27.75,27.75,0,0,0,152,204a28,28,0,1,0,28-28H83.17a8,8,0,0,1-7.87-6.57L72.13,152h116a24,24,0,0,0,23.61-19.71l12.16-66.86A8,8,0,0,0,222.14,58.87ZM96,204a12,12,0,1,1-12-12A12,12,0,0,1,96,204Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,192,204Zm4-74.57A8,8,0,0,1,188.1,136H69.22L57.59,72H206.41Z"></path></svg>
+</button>
+<button class="lg:hidden flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-content-light dark:text-content-dark hover:bg-primary/20 transition-colors">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,88H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<section class="relative h-[600px] flex items-center justify-center text-center text-white overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxrUDgNu6E0R-PPGz5C18jPSlyxZrz77rop4ZBBkyECbBFcwL7yDR9GTnddl8NfAjLASDfCBuNkcIdkzR8354KIGfSwLYpPfnNODONlaQkuPmoQuuwEW28l1ntEUZ4ngMz7R4ArnnpDIEiQmfVcpDSSuqP4p6SINkSFGaT771CVOw7QM7oVVBlvJcAiaqbEa40ktfP_wT5yjW-gvCIyFAlvR0ERPxprJNxBDkV8EmS3O9LB12amhWa7p7vi8ObXMrj9tvbgg-OLoM");'></div>
+<div class="absolute inset-0 bg-black/50"></div>
+<div class="relative z-10 p-4">
+<h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
+                        Find Your Perfect
+                        <div class="animated-text-container text-primary">
+<div class="animated-text">
+<div>clothing.</div>
+<div>jewelry.</div>
+<div>footwear.</div>
+<div>clothing.</div>
+</div>
+</div>
+</h1>
+<p class="max-w-2xl mx-auto text-lg md:text-xl text-white/90 mb-8">
+                        Explore unique pieces from top vendors. The latest trends are just a click away.
+                    </p>
+<a class="inline-block bg-primary text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-primary/90 transition-all transform hover:scale-105" href="#">
+                        Shop Now
+                    </a>
+</div>
+</section>
+<section class="py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold tracking-tight text-content-light dark:text-content-dark text-center mb-12">Shop by Category</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group relative rounded-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfy-25V-1xtFl85o6kGC2tKzDPhgVFDXSUaOfQvsbexxjtJfVYUnV4gpq8-vS5PKNfZ3B2IGVyd9cOb3dFP_c3TDTTNaaYUlUgUiAwyrCirtIPvi25-imwgi-Q5vIV_xY4Fdc1_2eVVObAqmW07akw19SNMVkIf-zBiPpi3it6f0QdhZlSh9ynsCJHZvWeDrhNqBqFueMgefgM1cyZIhCm8X4HSHRpPTi1LPhVoxewhNWvsaVwi1mUEUQ2bdrx1ReC_QBmeLdZ53Y")'></div>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
+<div class="relative p-6 h-80 flex flex-col justify-end">
+<h3 class="text-2xl font-bold text-white">Clothing</h3>
+<p class="text-white/80 mt-2">Latest fashion trends</p>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 ease-in-out lg:col-span-2">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7db0ANALdiRNswsPbYBcOHj3Dwa-QSPWaRVnBebrxPlYexZXc4-eK_gWf-CxU3lG6fIzM1JUESsCfa8t6q2z41ARS2Ip9duMWrKDYMTIhiAeK79CzUr33FxjjXNL4eU1B39qtZTETayR3YYqxlbeaH__C9av2lqCaF7_Gi-Apgu-skmryGOPFjz6Dn9oBe49zQhBtnoPX-N7zeEJSzjXCLNTMzwyrYWsAQ-DGBkkRjYenI0nurSFzF7iO53PW2hbxUSVxxxlINdA")'></div>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
+<div class="relative p-6 h-80 flex flex-col justify-end">
+<h3 class="text-2xl font-bold text-white">Jewelry</h3>
+<p class="text-white/80 mt-2">Unique and stylish pieces</p>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoY1DVy0tBw74TplNRpPTNIF0fs7yvtAD4v7VAId3f45DC3B2O1ffW28juTZPBSykh00m3ZEYfqzVph4a0elXfxdtN1MChpgEV-jB4FrrKQNMV-j7p5VZgAH07bTuoKWHglT4cfo33BpGY6ArFoCDuhjTrAz8jvg7EY85EBNONNCv9BYpi_IHOIGxo-zlOsYDs8nPdu7FbPJenjxa8yGAEyF2J94pXDuLdgG_KArVonfNSedqmUHNe88AeXo5V4YqqewDmH0hGq54")'></div>
+<div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors"></div>
+<div class="relative p-6 h-80 flex flex-col justify-end">
+<h3 class="text-2xl font-bold text-white">Footwear</h3>
+<p class="text-white/80 mt-2">Comfortable and stylish</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-background-light dark:bg-background-dark py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl font-bold tracking-tight text-content-light dark:text-content-dark text-center mb-12">What Our Customers Say</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+<div class="bento-card col-span-2 row-span-2 rounded-xl p-6 md:p-8 flex flex-col justify-center items-center text-center glassmorphism">
+<img alt="Customer Photo" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-primary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo_m2gJk05d-JpDqP2g6w1mD3bW6_nJgYv4aCg0B8r5q_rI-eK0gZ1fX_c7c8w-qV0hJjK4a5b-hK0e_dG5y6m4sLp_p1l-c2o"/>
+<p class="text-content-light/80 dark:text-content-dark/80 mb-4 text-lg">"I absolutely love the unique items I find on GoShada! The quality is always top-notch."</p>
+<p class="font-bold text-primary">- Sarah L.</p>
+</div>
+<div class="bento-card rounded-xl overflow-hidden aspect-square">
+<img alt="Customer review photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUqNNPgEVKLQ-GpcH4pI1mrzt9vlsHP-6jxfVZodqyuhWsWkdAyDD8jpkgHx2KZSOoSI2n4ss2LecDp4n4Je6mm-ZAV4OvVKsvqMi-BI1kHoahfL5t1hknZG_ULG-3qQ0oOHv68E3Nofof8zXYrEPfx-TJlve1yoO3wyq2KxanfPU-RMhZ3IHDU25Cqk-8MgrEpyGpw5GfjjUUOfYn1qOdAVZhE5vwp6a5Ohhh1VdWhK9qcbLbnLiw1FjorxgDXdQ5ds9ZgXhnFEc"/>
+</div>
+<div class="bento-card rounded-xl overflow-hidden aspect-square">
+<img alt="Customer review photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbHZMrDvVL3i2seCAZFPxPgc-JR9Od4HH840ONKaStlbxa9F44n-QMPCVdOOUnC-QTruNklHEL6by_cKaoPu9YwebgmEzE_TycMlSHloZU4x5VZ5ha_eUT16lmwHV_oMQ07zuCU2fZOG175Z82_g5zmXwgCNoJ9n9-qedk2sY87e01qH7k50AoFVBp-cieu5PhFMd_oI-0A8HblZz2P5aVsr00VVv3fgF_s4S4R7Lnj9qv-Fcb5C9N_wBS8brOKBJhKOB7Z7Uqmo4"/>
+</div>
+<div class="bento-card rounded-xl overflow-hidden aspect-square">
+<img alt="Customer review photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQKk1GBVroJ67L0R7uOhW0258zk7WaRBu0tkdoZ67z-is5S5U60zHT3s8B4X7zq0VpZTB5odb7mmDmwDGHLUq9O5IY1HWONL1jKI9RVVExpMPi1JnQQHdFdr8D0ZLKZ8xL_yDk9NDBbbLocX6JQ5IfO_Hx6nOyuFn6D_CJaJNPZu_9AV6mc1vfIZi6t0bIGs7Cn-Eg--qtEcDPJDiT6jT0U7W-l71bsAOfUFRoPLBtQ5Wwtt1xmJWcnWqCOxUWr7P7HFkNHK2Wuy8"/>
+</div>
+<div class="bento-card rounded-xl overflow-hidden aspect-square">
+<img alt="Customer review photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuEXbZwUo9vyYhmjOOfAdYEHoNgFBi0ud63tSoSG1qHYNv5SaAxnaGdjMbL0vLfC5UOVj4WCpd84ZmR9rHqNxURnQjC8oMURtOJmFvHY2WvpawuqaE7TMBB9stAmDI7vZhiLR4nxLb_yAcJ0ZJdCoq6MvbZT59dyOBBx0VKBIwPdyNrQu7EtBq30jDSucC5TxHxANVxh-XQ_LLgnUlU-ALev4ya0zOKLc1V4kE-NNtmbWlP7hZRZwV7vuVeENvsFQ6P_35Htv7H1s"/>
+</div>
+<div class="bento-card rounded-xl overflow-hidden aspect-square">
+<img alt="Customer review photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsou-mJcBnQQsK6D2KL7-seeI4wtE75jMxxAPLMoMmu6jlIm24WxrNeZEOFTZLTsga_zlUD2AH7oLu3hSaNQRlUmcUX4iAP0I3kgOj5GbaSE9LgR5SoQivJ-FVZCetK75aR0K8GOUDJTzvbNd241QCWiFu2Sfj_313TVDsNrMH-mwXJZJqc1HUamGyH67nYBXDbbNCrW0NVZ5SNvqLMR7MjnDEa16ooW3PEXdHlzmlbu4HoU79gmf1OTrENrVedlZ1q322hVqNV_k"/>
+</div>
+<div class="bento-card col-span-2 row-span-2 rounded-xl p-6 md:p-8 flex flex-col justify-center items-center text-center glassmorphism">
+<img alt="Customer Photo" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-primary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8mX7rK9b9pW4xJ7jJ3n6lM7o7c8s7w5vU4dK9z3fX2g8dY1l7p0h_qH9mJ6lP5rK3jL8nB7mJ6lO4nE3dK2rJ8k9"/>
+<p class="text-content-light/80 dark:text-content-dark/80 mb-4 text-lg">"Finally, a marketplace that feels curated and special. I've discovered so many amazing small businesses."</p>
+<p class="font-bold text-primary">- Michael B.</p>
+</div>
+<div class="bento-card rounded-xl overflow-hidden aspect-square">
+<img alt="Customer review photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8FhIbuRZHKiiAGlVF6QF38MmTOK5CUf8-Wy8PYXmPSGXEcdTneL3dlUNjK7PqR0ne1k-alI_nhwG1xnepwM_bbtgT3-HFa35fMsK05PiiWXEmRmIyg7FsVKBWh0_FSQZlZ2UcAH3hNPnraocWjZ6VCe1CwLzAiuVKRutDIot4o0nwOTp2K5ka957ed3z_bFrOtdP9MLjjV3AErszIXnx2FnHJYdeUtTfnQwlu5YyNykIkDyWNU3GjkmH9l7THLy6QAiMDiRBo_dE"/>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-primary/5 dark:bg-primary/10 py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center">
+<h2 class="text-3xl font-bold tracking-tight text-content-light dark:text-content-dark">More Than Just a Marketplace</h2>
+<p class="mt-4 max-w-2xl mx-auto text-lg text-content-light/80 dark:text-content-dark/80">Discover the features that make GoShada the best place to shop and sell.</p>
+</div>
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold text-content-light dark:text-content-dark">Discover Unique Vendors</h3>
+<p class="mt-2 text-content-light/70 dark:text-content-dark/70">Explore a curated selection of talented artisans and creators.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold text-content-light dark:text-content-dark">Secure Transactions</h3>
+<p class="mt-2 text-content-light/70 dark:text-content-dark/70">Shop with confidence using our secure payment gateway.</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary text-white mb-4">
+<svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xl font-bold text-content-light dark:text-content-dark">Powerful Vendor Tools</h3>
+<p class="mt-2 text-content-light/70 dark:text-content-dark/70">We empower our vendors with tools to grow their business.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-background-light dark:bg-background-dark py-16 sm:py-24">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="relative rounded-xl p-8 md:p-12 text-white overflow-hidden bg-primary">
+<div class="absolute -top-10 -right-10 w-48 h-48 bg-white/10 rounded-full"></div>
+<div class="absolute -bottom-16 -left-10 w-64 h-64 bg-white/10 rounded-full"></div>
+<div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+<div class="text-center md:text-left">
+<h2 class="text-3xl font-extrabold tracking-tight">Ready to Sell on GoShada?</h2>
+<p class="mt-4 max-w-xl text-lg text-primary/80">Join our community of creators and entrepreneurs. It's easy to get started.</p>
+<a class="mt-8 inline-block bg-white text-primary font-bold py-3 px-8 rounded-lg text-lg hover:bg-white/90 transition-all transform hover:scale-105" href="#">
+                            Vendor Application
+                        </a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bento-card animate-bento-pulse rounded-lg p-4 bg-white/20 backdrop-blur-md">
+<svg class="w-10 h-10 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<p class="text-center font-semibold text-sm">Easy Store Setup</p>
+</div>
+<div class="bento-card animate-bento-pulse rounded-lg p-4 bg-white/20 backdrop-blur-md" style="animation-delay: 0.5s;">
+<svg class="w-10 h-10 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 17h8m0 0v-8m0 8l-8-8-4 4-6-6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<p class="text-center font-semibold text-sm">Growth Analytics</p>
+</div>
+<div class="bento-card animate-bento-pulse rounded-lg p-4 bg-white/20 backdrop-blur-md" style="animation-delay: 1s;">
+<svg class="w-10 h-10 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.122-1.28-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.653.122-1.28.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<p class="text-center font-semibold text-sm">Community Support</p>
+</div>
+<div class="bento-card animate-bento-pulse rounded-lg p-4 bg-white/20 backdrop-blur-md" style="animation-delay: 1.5s;">
+<svg class="w-10 h-10 text-white mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<p class="text-center font-semibold text-sm">Secure Payments</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div class="col-span-1">
+<a class="flex items-center gap-2 text-2xl font-bold" href="#">
+<span class="text-content-light dark:text-content-dark">Go</span>
+<span class="text-primary">Shada</span>
+</a>
+<p class="mt-4 text-sm text-content-light/70 dark:text-content-dark/70">Your one-stop shop for discovering amazing products from talented vendors.</p>
+</div>
+<div>
+<h3 class="font-semibold text-content-light dark:text-content-dark">Quick Links</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-sm text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#">About Us</a></li>
+<li><a class="text-sm text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#">Contact</a></li>
+<li><a class="text-sm text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-semibold text-content-light dark:text-content-dark">Legal</h3>
+<ul class="mt-4 space-y-2">
+<li><a class="text-sm text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="text-sm text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-semibold text-content-light dark:text-content-dark">Follow Us</h3>
+<div class="flex mt-4 space-x-4">
+<a class="text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+<a class="text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.062-.772-.023-2.046.33-2.883.333-.787 2.164-9.155 2.164-9.155s-.54-.997-.54-2.463c0-2.31.134-4.04.134-4.04.225.438.334.86.334 1.304 0 .92-.587 2.193-1.42 2.193-.578 0-1.027-.55-1.027-1.223 0-.91.666-1.572.666-1.572s-1.854-7.85-2.247-9.255c-.23-.84-.04-1.68.513-1.68.623 0 1.25.32 1.25 1.513 0 1.34-.833 3.48-.833 3.48s.504-2.12.833-1.29c.33.83.918 1.815.918 2.584 0 1.023-.134 1.804-.418 2.636 1.42.593 2.375 1.76 2.375 3.393 0 2.57-1.42 4.61-3.187 4.61-1.333 0-2.375-1.12-2.04-2.583.133-.578.417-1.166.583-1.75.167-.583.084-.916-.25-1.5s-.667-.917-1.084-.583c-.416.333-.583 1-.416 1.5.334 1.084.75 2.334.084 3.417-.666 1.084-2.416.417-2.75-.833-.25-1-.583-2.333-.583-3.25 0-1.5.667-2.75 1.75-3.583.5-.334 1.25-.084 1.5.417.333.583.417 1.25.25 1.917-.333 1.166-.833 2.583-.833 2.583s-.083.333.083.5c.25.167.583-.083.667-.333.083-.25.333-.833.5-1.417.25-.916.25-1.75.833-1.75.833 0 1.5.833 1.5 2.5 0 .833-.167 1.417-.417 2.083-.416 1.167-1.5 2.5-2.916 2.5-2.25 0-4.083-2.083-4.083-5.083 0-2.5 1.833-4.5 4.333-4.5 2.333 0 3.75 1.5 3.75 3.333 0 1.417-.5 2.5-1.25 2.5-.583 0-1.083-.5-1.083-1.167 0-.916.583-1.833.583-1.833s.333-1.416.917-2.083c1.083-1.25 2.5-1.25 3.5.583.917 1.75.083 4.25-1.667 5.25.5.083 1 .083 1.5-.083 2-1.583 2.833-4.417 2.833-7.167C21.917 7.083 17.5 2 12 2z" fill-rule="evenodd"></path></svg></a>
+<a class="text-content-light/70 dark:text-content-dark/70 hover:text-primary" href="#"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-primary/20 text-center text-sm text-content-light/70 dark:text-content-dark/70">
+<p>© 2024 GoShada. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0b0b0c;
+  --fg: #111111;
+}
+
+/* Reusable transitions and controls */
+.transition-base {
+  @apply transition-colors duration-200 ease-out;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition-transform duration-150 ease-out;
+}
+
+.btn-primary {
+  @apply btn bg-primary text-white hover:bg-primary/90 active:scale-[0.98];
+}
+
+.link-nav {
+  @apply inline-flex items-center gap-2 text-content-light dark:text-content-dark hover:text-primary transition-base;
+}
+
+body {
+  @apply bg-white text-gray-900 antialiased;
+}
+
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+/* Custom homepage utilities */
+.animated-text-container {
+  height: 1.5em;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.animated-text {
+  animation: slide-up 12s infinite;
+}
+
+@keyframes slide-up {
+  0%, 25% {
+    transform: translateY(0);
+  }
+  33.33%, 58.33% {
+    transform: translateY(-1.5em);
+  }
+  66.66%, 91.66% {
+    transform: translateY(-3em);
+  }
+  100% {
+    transform: translateY(-4.5em);
+  }
+}
+
+.bento-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.bento-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.dark .glassmorphism {
+  background: rgba(16, 26, 34, 0.1);
+  border: 1px solid rgba(231, 238, 244, 0.2);
+}
+
+.animate-bento-pulse {
+  animation: bento-pulse 4s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes bento-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.95;
+  }
+}
