@@ -36,7 +36,7 @@ CampusThreads is a multivendor e-commerce platform empowering student entreprene
    docker compose up -d --build
    ```
 
-5. Run the API (dev)
+5. Run the API (dev).
 
    ```bash
    npm run dev:api
